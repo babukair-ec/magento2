@@ -1,0 +1,166 @@
+<?php
+$order = $this->getOrder();
+$helper = $this->helper('Delivery\Shipox\Helper\Data');
+$shipoxOrderResponse = null;
+//$custom = $this->helper('Delivery\Shipox\Block\Adminhtml\Order\View\Custom');
+?>
+<!--<div class="entry-edit box-left">-->
+<!--    <div class="entry-edit-head">-->
+<!--        <h4 class="icon-head">--><?php //echo 'Shipox Delivery Shipment' ?><!--</h4>-->
+<!--    </div>-->
+<!--    <fieldset>-->
+        <?php
+//        $shipoxOrderData = $this->isShipoxOrderCreated($order);
+//        $isFrontEndOrder = $this->isShipoxOrderCreatedFromFrontEnd($order);
+//        $isPossibleToCreateNewOrder = true;
+//        if (!empty($shipoxOrderData)) {
+//            $isPossibleToCreateNewOrder = false;
+//
+//            ?>
+<!--            <div class="admin__field field-row">-->
+<!--                <strong>--><?php //echo 'Order Tracking URL' ?><!--:</strong> <a-->
+<!--                        href="--><?php //echo $helper->getOrderTrackerURL($shipoxOrderData) ?><!--"-->
+<!--                        target="_blank"-->
+<!--                        title="--><?php //echo '#' . $shipoxOrderData['shipox_order_number'] ?><!--">--><?php //echo '#' . $shipoxOrderData['shipox_order_number'] ?><!--</a>-->
+<!--            </div>-->
+<!--            --><?php
+//            $shipoxOrderResponse = $this->getShipoxOrderDetailInfo($shipoxOrderData['shipox_order_number'], $order);
+//
+//            if (!empty($shipoxOrderResponse)) {
+//                $orderAirWayBill = $this->getOrderAirWayBill($shipoxOrderResponse['id']); ?>
+<!--                <div class="admin__field field-row">-->
+<!--                    <strong>--><?php //echo 'Order Status' ?>
+<!--                        :</strong> --><?php //echo $shipoxOrderResponse['status_object']['label']; ?>
+<!--                </div>-->
+<!--                <div class="admin__field field-row">-->
+<!--                    <strong>--><?php //echo 'Estimated Delivery' ?>
+<!--                        :</strong> --><?php //echo $shipoxOrderResponse['estimated_delivery_date']; ?>
+<!--                </div>-->
+<!--                --><?php
+//                if (!is_null($orderAirWayBill)) { ?>
+<!--                    <div class="admin__field field-row">-->
+<!--                        <strong>--><?php //echo 'Shipox AirWayBill' ?>
+<!--                            :</strong> <a href="--><?php //echo $orderAirWayBill; ?><!--" target="_blank">Download AirWayBill</a>-->
+<!--                    </div>-->
+<!--                --><?php //} ?>
+<!--                --><?php
+//
+//                if (!$isFrontEndOrder) {
+//                    if ($shipoxOrderResponse['status_object']['cancellable']) {
+//                        ?>
+<!--                        <form id="shipoxCancelOrderForm"-->
+<!--                              onsubmit="shipoxOrderController.cancelShipoxOrder(event, 'shipoxCancelOrderForm')">-->
+<!--                        <div class="admin__field field-row">-->
+<!--                            <label class="admin__field-label" for="cancelReason"><strong>--><?php //echo 'Reason' ?><!--:</strong></label><br/>-->
+<!--                            <textarea name="cancelReason" id="cancelReason" rows="5" cols="50"></textarea>-->
+<!--                        </div>-->
+<!--                            <input type="hidden" name="orderId" value="--><?php //echo $order->getId(); ?><!--"/>-->
+<!--                            <div class="admin__field field-row">-->
+<!--                            <button class="action-default scalable action-secondary save" id="cancelOrder">-->
+<!--                                --><?php //echo 'Cancel Order' ?>
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        </form>-->
+<!--                        --><?php
+//                    }
+//                }
+//
+//                if (!$shipoxOrderResponse['status_object']['cancellable'] && $this->showShipoxOrderCancelField($shipoxOrderResponse['status'])) {
+//                    ?>
+<!--                    <span class="field-row"-->
+<!--                          style="display: block; padding: 10px; border-radius: 4px; background-color: #fcf8e3; border: 1px solid #faebcc; color: #8a6d3b">-->
+<!--                            --><?php //echo $this->getOrderActionStatus(); ?>
+<!--                        </span>-->
+<!--                    --><?php
+//                }
+//            }
+//        }
+
+
+//        if (!$isFrontEndOrder) {
+
+//            if($this->getProperPackagesForOrder($isPossibleToCreateNewOrder, $shipoxOrderResponse)) {
+//                $shipoxPackages = $this->getProperPackagesForOrder($order);
+//                if ($shipoxPackages['status']) {
+//                    $priceArr = $shipoxPackages['data'];
+//                    $menuId = $shipoxPackages['menuId'];
+//                    ?>
+<!--                    <br />-->
+<!--                    <form id="shipoxOrderForm" onsubmit="pushShipoxOrder(event, 'shipoxOrderForm')">-->
+<!--                    <div class="admin__field field-row">-->
+<!--                        <label class="admin__field-label" for="packageType">--><?php //echo 'Select Package' ?><!--: </label>-->
+<!--                        <select id="packageType" name="packageName" class="select admin__control-select">-->
+<!--                            --><?php //foreach ($priceArr as $method => $label) { ?>
+<!--                                <option value="--><?php //echo $method ?><!--">--><?php //echo $label['label'] . " - " . $label['amount'] . " " . $order['currency']; ?><!--</option>-->
+<!--                            --><?php //} ?>
+<!--                        </select>-->
+<!--                        <input type="hidden" name="menuId" value="--><?php //echo $menuId; ?><!--"/>-->
+<!--                        <input type="hidden" name="orderId" value="--><?php //echo $order->getId(); ?><!--"/>-->
+<!--                    </div>-->
+<!--                     <div class="admin__field field-row">-->
+<!--                        <label  class="admin__field-label" for="packageNote">--><?php //echo 'Package Note' ?><!--: </label>-->
+<!--                        <textarea class="admin__control-textarea" id="packageNote" name="packageNote" cols="50" rows="4"></textarea>-->
+<!--                    </div>-->
+<!--                     <div class="admin__field field-row">-->
+<!--                        <button class="action-default scalable action-secondary save" id="createOrder">-->
+<!--                            --><?php //echo (is_null($shipoxOrderResponse)) ? 'Create Order' : 'Recreate Order' ?>
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    </form>-->
+<!--                    --><?php
+//                }
+//            }
+//        }
+        ?>
+<!--    </fieldset>-->
+<!--</div>-->
+
+<script>
+    function pushShipoxOrder (event, container) {
+        console.log('Called custom phtml');
+        require([
+            'jquery'
+        ], function ($) {
+            event.preventDefault();
+            const $form = $('#' + container).serialize();
+            const $formKey = "<?php echo $this->key(); ?>";
+            $.post("<?php echo $this->getUrl('shipox/createorder'); ?>", $form + "&form_key=" + $formKey,
+                function (data) {
+                    alert(data['message']);
+                }, 'json').fail(function () {
+                alert('There is some error');
+            })
+        });
+    }
+
+
+    //$j = jQuery.noConflict();
+    //
+    //var shipoxOrderController = {
+    //
+    //    pushShipoxOrder: function (event, container) {
+    //
+    //    },
+    //
+    //    cancelShipoxOrder: function (event, container) {
+    //        event.preventDefault();
+    //        var $loader = document.getElementById('loading-mask');
+    //        $loader.show();
+    //
+    //        var $form = $j('#' + container).serialize();
+    //        var $formKey = "<?php //$this->key(); ?>//";
+    //
+    //        $j.post("<?php //echo $this->getUrl('adminhtml/shipoxadmin/cancelorder'); ?>//", $form + "&form_key=" + $formKey,
+    //            function (data) {
+    //                $loader.hide();
+    //                alert(data['message']);
+    //                window.location.reload();
+    //            }, 'json').fail(function () {
+    //            $loader.hide();
+    //            alert('There is some error');
+    //            window.location.reload();
+    //        })
+    //    }
+    //}
+</script>
+<div class="clear"></div>

@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="delivery" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shipox Delivery</label>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Method Name</label>
+                </field>
+                <field id="active" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled for Checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="intcashondelivery" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>International Cash On Delivery</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allowed_payment_type" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Payment Type</label>
+                    <source_model>Delivery\Shipox\Model\Paymenttype</source_model>
+                </field>
+                <field id="default_weight" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Parcel Weight</label>
+                    <frontend_class>required-entry</frontend_class>
+                    <source_model>\Delivery\Shipox\Model\Menutype</source_model>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="length" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Parcel Length</label>
+                </field>
+                <field id="width" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Parcel Width</label>
+                </field>
+                <field id="height" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Parcel Height</label>
+                </field>
+
+                <field id="unit_type" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Unit Type</label>
+                    <source_model>Delivery\Shipox\Model\UnitType</source_model>
+                </field>
+                <field id="carrier_options" translate="label" type="multiselect" sortOrder="8" showInDefault="1" showInWebsite="1">
+                    <label>Enable Carrier Options</label>
+                    <source_model>\Delivery\Shipox\Model\Couriertype</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>\Delivery\Shipox\Model\Countrylist</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <!--<field id="is_create_shipment" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">-->
+                    <!--<label>Create Shipment Automatically</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                <!--</field>-->
+                <field id="reordering" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled for Repush Cancelled Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Displayed Error Message</label>
+                </field>
+                <field id="showmethod" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Method if Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>shipping-skip-hide</frontend_class>
+                </field>
+            </group>
+        </section>
+        <section id="general">
+            <group id="auth" type="" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+                <label>Shipox Delivery Client Information</label>
+                <field id="user_name" translate="label" type="text" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Username</label>
+                </field>
+                <field id="password" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0" type="password">
+                    <label>Password</label>
+                </field>
+                <field id="check_account" translate="label" sortOrder="4" showInDefault="1" type="button">
+                    <frontend_model>\Delivery\Shipox\Block\Adminhtml\System\Config\Form\GetTokenButton</frontend_model>
+                </field>
+                <field id="jwt_token" type="textarea" showInStore="1" showInWebsite="1" showInDefault="1" sortOrder="5">
+                    <label>JWT Token</label>
+                    <frontend_model>\Delivery\Shipox\Block\Adminhtml\System\Config\Form\TokenField</frontend_model>
+                </field>
+                <!--<field id="token_time" type="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<frontend_model>\Delivery\Shipox\Block\Adminhtml\System\Config\Form\ExpiredToken</frontend_model>-->
+                <!--</field>-->
+            </group>
+            <group id="service" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+                <label>Shipox Delivery Service Configuration</label>
+                <field id="sandbox_flag" type="select" translate="label" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Test Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+<!--                <field id="api_version" type="select" translate="label" showInDefault="1" showInWebsite="1" showInStore="0">-->
+<!--                    <label>New model</label>-->
+<!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                </field>-->
+                <field id="gmap_key" type="text" translate="label" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Google Map Key</label>
+                </field>
+            </group>
+            <group id="merchant" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+                <label>Shipox Delivery Merchant Details</label>
+                <field id="fullname" sortOrder="2" showInDefault="1" type="text">
+                    <label>Contact Name</label>
+                </field>
+                <field id="email" sortOrder="2" showInDefault="1" type="text">
+                    <label>Email</label>
+                </field>
+                <field id="company_name" sortOrder="2" showInDefault="1" type="text">
+                    <label>Company Name</label>
+                </field>
+                <field id="phone_number" sortOrder="2" showInDefault="1" type="text">
+                    <label>Phone Number</label>
+                </field>
+                <field id="city" sortOrder="2" showInDefault="1" type="text">
+                    <label>City</label>
+                </field>
+                <field id="address1" sortOrder="2" showInDefault="1" type="text">
+                    <label>Address 1</label>
+                </field>
+                <field id="address2" sortOrder="2" showInDefault="1" type="text">
+                    <label>Address 2</label>
+                </field>
+                <field id="postcode" sortOrder="2" showInDefault="1" type="text">
+                    <label>PostCode</label>
+                </field>
+                <field id="lat_lon" sortOrder="2" showInDefault="1" type="text">
+                    <label>Latitude / Longitude</label>
+                </field>
+                <field id="details" sortOrder="2" showInDefault="1" type="text">
+                    <label>Details</label>
+                </field>
+                <field id="pickup" type="select" sortOrder="2" showInDefault="1">
+                    <label>Pick Up</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="confirmed_by_recipient" type="select" sortOrder="2" showInDefault="1">
+                    <label>Confirmed by Recipient</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apartment" sortOrder="3" showInDefault="1" type="text" showInWebsite="1" showInStore="0">
+                    <label>Apartment</label>
+                </field>
+                <field id="building" sortOrder="4" showInDefault="1" type="text" showInWebsite="1" showInStore="0">
+                    <label>Building</label>
+                </field>
+                <field id="street" sortOrder="5" showInDefault="1" type="text" showInWebsite="1" showInStore="0">
+                    <label>Street</label>
+                </field>
+                <field id="city_code" sortOrder="6" showInDefault="1" type="text" showInWebsite="1" showInStore="0">
+                    <label>City Code</label>
+                </field>
+                <field id="country_id" sortOrder="7" showInDefault="1" type="text" showInWebsite="1" showInStore="0">
+                    <label>Country ID</label>
+                </field>
+                <field id="address_type" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Address Type</label>
+                    <source_model>Delivery\Shipox\Model\AddressType</source_model>
+                </field>
+
+            </group>
+            <group id="shipping" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" translate="label">
+                <label>Shipox Shipping Settings</label>
+                <field id="details" sortOrder="2" showInDefault="1" type="text" showInWebsite="1" showInStore="0">
+                    <label>Consignor Name</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<?php
+
+$trackerModel = new \Delivery\Shipox\Model\Tracking();
+$helper = new Delivery\Shipox\Helper\Data();
+$shipoxTrackOrder = $trackerModel->getOrderTrackingData($this->getOrder());
+
+if($shipoxTrackOrder) :
+    $orderURL = $helper->getShipoxSiteURL()."/track/".$shipoxTrackOrder['shipox_order_number'];
+    ?>
+    <div class="col1-set order-info-box">
+        <div class="col-1">
+            <div class="box">
+                <div class="box-title">
+                    <h2><?php echo $helper->getCompanyName() ?></h2>
+                </div>
+                <div class="box-content">
+                    <p>Shipox Shipment Tracking ID: <a href="<?php echo $orderURL; ?>" target="_blank">#<?php echo $shipoxTrackOrder['shipox_order_number']; ?></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+<?php endif; ?>

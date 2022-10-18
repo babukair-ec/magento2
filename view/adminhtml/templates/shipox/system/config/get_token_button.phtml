@@ -1,0 +1,37 @@
+<?php
+
+?>
+
+<?php echo $block->getButtonHtml();
+
+?>
+<script>
+
+function getJWTToken () {
+    require([
+        'mage/url'
+    ], function (url) {
+        var params = {
+            username: document.getElementById("general_auth_user_name").value,
+            password: document.getElementById("general_auth_password").value
+        };
+        var requestUrl = '<?php echo $this->getUrl("shipox/token") ?>';
+        //var linkUrl = url.build('Adminhtml/ShipoxController/getToken');
+        new Ajax.Request(requestUrl, {
+            parameters: params,
+            onSuccess: function (transport) {
+                if (transport.responseText) {
+                    var response = transport.responseText.evalJSON(true);
+                    if (response.status) {
+                        var token = response.data.id_token;
+                        document.getElementById('general_auth_jwt_token').value = token;
+                        // window.location.reload();
+                    } else {
+                        alert(response.description);
+                    }
+                }
+            }
+        });
+     });
+}
+</script>

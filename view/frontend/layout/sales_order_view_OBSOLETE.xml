@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <body>
+        <referenceBlock name="sales.order.info">
+            <!--<block template="Delivery_Shipox::shipox/sales/order/view/customer_order_tracking_block.phtml" class="Magento\Sales\Block\Order\Info" name="shipox.order.info.customer"/>-->
+        </referenceBlock>
+    </body>
+</page>

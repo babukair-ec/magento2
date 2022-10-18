@@ -1,0 +1,16 @@
+<?php
+$shipoxTrackOrder = $this->trackOrder();
+$shipoxTitle = $this->getServiceTitle();
+$shipoxHostName = $this->getSiteHost();
+$shipoxSiteUrl = $this->getSiteUrl();
+if($shipoxTrackOrder) {
+    ?>
+    <div class="checkout-success">
+        <div class="field">
+            <h2 class='subtitle'><?php echo $shipoxTitle; ?></h2>
+            Your order will be shipped by <a href="<?php echo $shipoxSiteUrl; ?>" target="_blank"><?php echo $shipoxHostName; ?></a>. Your tracking ID is #<?php echo $shipoxTrackOrder['shipox_order_number']; ?>. Your shipment can be tracked <a href="<?php echo $shipoxTrackOrder['shipox_order_url']; ?>" target="_blank" title="Track Order"><strong>here</strong></a>
+        </div>
+    </div>
+    <?php
+}
+?>
